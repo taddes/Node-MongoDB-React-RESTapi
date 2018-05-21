@@ -1,4 +1,5 @@
 const express = require('express');
+const routes = require('./routes/api')
 
 // Set up Express
 const app = express();
