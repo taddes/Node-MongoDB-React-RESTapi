@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/taddes/Node-MongoDB-React-RESTapi/issues"
   },
-  "homepage": "https://github.com/taddes/Node-MongoDB-React-RESTapi#readme"
+  "homepage": "https://github.com/taddes/Node-MongoDB-React-RESTapi#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
