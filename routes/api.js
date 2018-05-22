@@ -21,7 +21,10 @@ router.put('/cats/:id', function(req, res, next) {
 
 // delete a cat from db
 router.delete('/cats/:id', function(req, res, next) {
-  res.send({type: 'DELETE'})
+  Cat.findByIdAndRemove({_id: req.params.id})
+  .then(function(cat){
+    res.send(cat);
+  });
 });
 
 module.exports = router;
