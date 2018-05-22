@@ -1,6 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// create geolocation schema
+// 2d sphere curved path captures accurate geolocation data, via GeoJSON
+const GeoSchema = new Schema({
+  type: {
+    type: String,
+    default: "Point"
+  },
+  coordinates: {
+    type: [Number],
+    index:"2dsphere"
+  }
+});
+
 // Create Cat schema and model
 const CatSchema = new Schema({
   name: {
@@ -13,8 +26,8 @@ const CatSchema = new Schema({
   available: {
     type: Boolean,
     default: false
-  }
-  //include geolocation
+  },
+  geometry: GeoSchema
 });
 
 // mongoose will pluralize from cat to cats

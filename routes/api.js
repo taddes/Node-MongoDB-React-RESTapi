@@ -4,7 +4,7 @@ const Cat = require('../models/cats')
 
 // Get a list of cats from database
 router.get('/cats', function(req, res, next) {
-  res.send({type:'GET'})
+  res.send({type:'GET'});
 });
 
 // Add new cat
