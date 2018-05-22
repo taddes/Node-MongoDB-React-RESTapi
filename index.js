@@ -1,9 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+
 const routes = require('./routes/api');
 
 // Set up Express
 const app = express();
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost/catgo');
+mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
 

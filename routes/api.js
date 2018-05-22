@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Cat = require('../models/cats')
 
 // Get a list of cats from database
 router.get('/cats', function(req, res) {
@@ -8,12 +9,9 @@ router.get('/cats', function(req, res) {
 
 // Add new cat
 router.post('/cats', function(req, res) {
-  console.log(req.body)
-  res.send({
-    type: 'POST',
-    name: req.body.name,
-    breed: req.body.breed
-  });
+ Cat.create(req.body).then(function(cat){
+  res.send(cat);
+ });
 });
 
 // update a cat from database
