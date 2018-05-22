@@ -16,7 +16,12 @@ router.post('/cats', function(req, res, next) {
 
 // update a cat from database
 router.put('/cats/:id', function(req, res, next) {
-  res.send({type: 'PUT'})
+  Cat.findByIdAndUpdate({_id: req.params.id}, req.body)
+  .then(function() {
+    Cat.findOne({_id: req.params.id}).then(function(cat) {
+      res.send(cat);
+    });
+  });
 });
 
 // delete a cat from db
