@@ -18,11 +18,13 @@ app.use(bodyParser.json());
 app.use('/api', routes);
 
 // Error handling middleware
-app.use(function(err, req, res, next){
+app.use(function (err, req, res, next) {
 
-  res.status(422).send({error: err.message})
+  res.status(422).send({
+    error: err.message
+  })
 });
 // Listen for requests
-app.listen(process.env.port || 4000, function() {
-console.log(`Listening for requests on port 4000`)
+app.listen(process.env.port || 4000, function () {
+  console.log(`Listening for requests on port 4000`)
 })

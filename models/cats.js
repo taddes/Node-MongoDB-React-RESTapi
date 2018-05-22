@@ -14,7 +14,6 @@ const CatSchema = new Schema({
     type: Boolean,
     default: false
   }
-
   //include geolocation
 });
 
