@@ -8,8 +8,12 @@ router.get('/cats', function(req, res, next) {
  /* Cat.find({}).then(function(cats){
     res.send(cats);
   });*/
-
-
+Cat.geoNear(
+  {type:'Point', coordinates:[parseFloat(req.query.lng), parseFloat(req.query.lat)]},
+  {maxDistance: 1000000, spherical: true}
+  ).then(function(cats){
+    res.send(cats);
+  });
 });
 
 // Add new cat
