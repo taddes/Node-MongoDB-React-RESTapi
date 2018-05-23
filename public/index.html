@@ -29,16 +29,42 @@
   <!-- Create React Component -->
   <script type="text/babel">
   var Cats = React.createClass({
+    getInitialState: function() {
+      return({
+        cats: [];
+      })
+    },
     render:function(){
       return(
         <div id="cat-container">
-          <form id="search">
+          <form id="search" onSubmit={this.handleSubmit}>
             <label>Enter your latitude:</label>
             <input type="rext" ref="lat" placeholder="latutude" required />
             <label>Enter your longitude:</label>
             <input type="rext" ref="lng" placeholder="longitude" required />
+            <input type="submit" value="Find Cats" />
+          </form>
+          <ul></ul>
+
         </div>
       );
+    },
+    handleSubmit: function(e) {
+      e.preventDefault();
+      var lng = this.refs.lng.value;
+      var lat = this.refs.lat.vaule;
+
+      // query string for GET request
+      // pass in the latitude and longitude 
+      fetch('/api/cats?lng=' + lng + '&lat=' +lat)
+      .then(function(data){
+        return data.json();
+      }).then(json => {
+        //set state of component to re-render DOM, output cats
+        this.setState({
+          cats: json
+        });
+      });
     }
   })
   
