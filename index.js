@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-
 const routes = require('./routes/api');
 
 // Set up Express
@@ -12,9 +11,13 @@ const app = express();
 mongoose.connect('mongodb://localhost/catgo');
 mongoose.Promise = global.Promise;
 
+// Static content middleware
+app.use(express.static('public'));
+
+// Body parser middleware
 app.use(bodyParser.json());
 
-// Middleware. Adds the /api url to routes. 
+//  Adds the /api url to routes. 
 app.use('/api', routes);
 
 // Error handling middleware
