@@ -36,7 +36,7 @@
   var Cats = React.createClass({
     getInitialState: function() {
       return({
-        cats: [];
+        cats: []
       });
     },
     render:function(){
@@ -44,10 +44,10 @@
       cats = cats.map(function(cat, index){
         return(
           <li key={index}>
-            <span className={cat.obj.available}></span>
-            <span className="name">{cat.obj.name}</span>
-            <span className="breed">{cat.obj.breed}</span>
-            <span className="dist">{Math.floor(cat.dis/ 1000)} km</span>
+            <span className={cat.available}></span>
+            <span className="name">{cat.name}</span>
+            <span className="breed">{cat.breed}</span>
+            <span className="dist">{Math.floor(cat.dis / 1000)} km</span>
           </li>
         )
       });
@@ -55,12 +55,12 @@
         <div id="cat-container">
           <form id="search" onSubmit={this.handleSubmit}>
             <label>Enter your latitude:</label>
-            <input type="rext" ref="lat" placeholder="latutude" required />
+            <input type="text" ref="lat" placeholder="latitude" required />
             <label>Enter your longitude:</label>
-            <input type="rext" ref="lng" placeholder="longitude" required />
+            <input type="text" ref="lng" placeholder="longitude" required />
             <input type="submit" value="Find Cats" />
           </form>
-          <ul></ul>
+          <ul>{cats}</ul>
 
         </div>
       );
@@ -68,11 +68,12 @@
     handleSubmit: function(e) {
       e.preventDefault();
       var lng = this.refs.lng.value;
-      var lat = this.refs.lat.vaule;
+      var lat = this.refs.lat.value;
+      console.log(`longitude ${lng} latitude ${lat}`);
 
       // query string for GET request
       // pass in the latitude and longitude 
-      fetch('/api/cats?lng=' + lng + '&lat=' +lat)
+      fetch('/api/cats?lng=' + lng + '&lat=' + lat)
       .then(function(data){
         return data.json();
       }).then(json => {
