@@ -10,12 +10,17 @@
   <title>Mongo React Cat Database</title>
 </head>
 <body>
-  <h1 class="title">Cat Tracker Database - a CAT RESTful API</h1>
-  <div id="homepage">
-    <h1>Find your cat friends around the world!</h1>
-    <div id="cats">
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="title">Cat Tracker Database - a CAT RESTful API</h1>
     </div>
-  </div>
+    <div id="homepage">
+      <h1>Find your cat friends around the world!</h1>
+      <div id="cats">
+      </div>
+    </div>
+</div>
 
   <!-- Bootstrap 4 JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -32,9 +37,20 @@
     getInitialState: function() {
       return({
         cats: [];
-      })
+      });
     },
     render:function(){
+      var cats = this.state.cats;
+      cats = cats.map(function(cat, index){
+        return(
+          <li key={index}>
+            <span className={cat.obj.available}></span>
+            <span className="name">{cat.obj.name}</span>
+            <span className="breed">{cat.obj.breed}</span>
+            <span className="dist">{Math.floor(cat.dis/ 1000)} km</span>
+          </li>
+        )
+      })
       return(
         <div id="cat-container">
           <form id="search" onSubmit={this.handleSubmit}>
